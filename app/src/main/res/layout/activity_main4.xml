@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/cuero">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nueva tarea"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/pergamino" />
+
+        <TextView
+            android:id="@+id/tvCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Cancelar"
+            android:textColor="@color/dorado" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Título"
+        android:textColor="@color/pergamino" />
+
+    <EditText
+        android:id="@+id/etTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="text"
+        android:hint="¿Qué tienes que hacer?"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Prioridad"
+        android:textColor="@color/pergamino" />
+
+    <!-- Spinner = menú desplegable. popupBackground es el fondo de la lista que se abre. -->
+    <Spinner
+        android:id="@+id/spPrioridad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_campo"
+        android:popupBackground="@color/pergamino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Categoría"
+        android:textColor="@color/pergamino" />
+
+    <Spinner
+        android:id="@+id/spCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_campo"
+        android:popupBackground="@color/pergamino" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Guardar tarea"
+        android:textColor="@color/tinta"
+        android:backgroundTint="@color/dorado" />
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- LinearLayout: acomoda todo en vertical. El id "main" tiene que quedarse. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:padding="24dp"
+    android:background="@color/cuero">
+
+    <!-- El triángulo del logo: es solo el símbolo ▲ en grande y dorado -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="▲"
+        android:textColor="@color/dorado"
+        android:textSize="48sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To-Do List"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/pergamino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Organiza tus pendientes del día"
+        android:textSize="15sp"
+        android:textColor="#C8B58A" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Correo electrónico"
+        android:textColor="@color/pergamino" />
+
+    <!-- inputType="textEmailAddress" muestra el teclado con la @ -->
+    <EditText
+        android:id="@+id/etCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textEmailAddress"
+        android:hint="correo@ejemplo.com"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Contraseña"
+        android:textColor="@color/pergamino" />
+
+    <!-- inputType="textPassword" oculta lo que escribes con puntitos -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textPassword"
+        android:hint="••••••••"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Iniciar sesión"
+        android:textColor="@color/tinta"
+        android:backgroundTint="@color/dorado" />
+
+    <!-- Este texto funciona como enlace: en el Kotlin le ponemos un clic -->
+    <TextView
+        android:id="@+id/tvIrRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="¿No tienes cuenta? Regístrate"
+        android:textColor="@color/dorado" />
+</LinearLayout>
+

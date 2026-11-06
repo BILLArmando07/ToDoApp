@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Igual que el Login, pero con 4 campos. El id "main" es el nombre de este
+     contenedor principal. El Kotlin lo usa para acomodar la pantalla; si lo
+     quitas, la app se cierra sola al abrir esta pantalla. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:padding="24dp"
+    android:background="@color/cuero">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear cuenta"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/pergamino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Llena tus datos para empezar"
+        android:textSize="15sp"
+        android:textColor="#C8B58A" />
+
+    <!-- Campo 1: nombre. Cada campo son 2 piezas: el texto de arriba y la caja. -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Nombre"
+        android:textColor="@color/pergamino" />
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textPersonName"
+        android:hint="Tu nombre"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <!-- Campo 2: correo -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Correo electrónico"
+        android:textColor="@color/pergamino" />
+
+    <EditText
+        android:id="@+id/etCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textEmailAddress"
+        android:hint="correo@ejemplo.com"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <!-- Campo 3: contraseña -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Contraseña"
+        android:textColor="@color/pergamino" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textPassword"
+        android:hint="Mínimo 6 caracteres"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <!-- Campo 4: confirmar contraseña -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Confirmar contraseña"
+        android:textColor="@color/pergamino" />
+
+    <EditText
+        android:id="@+id/etConfirmar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="textPassword"
+        android:hint="Repite la contraseña"
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Registrarme"
+        android:textColor="@color/tinta"
+        android:backgroundTint="@color/dorado" />
+
+    <TextView
+        android:id="@+id/tvIrLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="¿Ya tienes cuenta? Inicia sesión"
+        android:textColor="@color/dorado" />
+</LinearLayout>

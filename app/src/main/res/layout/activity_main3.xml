@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/cuero">
+
+    <!-- Fila de arriba: título a la izquierda y "Ajustes" a la derecha.
+         El título tiene layout_weight=1, o sea "ocupa todo el espacio que sobre",
+         y eso empuja "Ajustes" hasta la derecha. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mis tareas"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/pergamino" />
+
+        <TextView
+            android:id="@+id/tvAjustes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Ajustes"
+            android:textColor="@color/dorado" />
+    </LinearLayout>
+
+    <!-- Aquí se muestra cuántas tareas hay (lo cambia el Kotlin) -->
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="0 tareas pendientes"
+        android:textColor="#C8B58A" />
+
+    <!-- La lista. divider transparente + dividerHeight = separación entre tarjetas.
+         height 0dp + weight 1 = ocupa todo lo que sobre, y el botón queda abajo. -->
+    <ListView
+        android:id="@+id/lvTareas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
+
+    <Button
+        android:id="@+id/btnNueva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="+ Nueva tarea"
+        android:textColor="@color/tinta"
+        android:backgroundTint="@color/dorado" />
+</LinearLayout>

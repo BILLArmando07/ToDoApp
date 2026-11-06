@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Una "tarjeta" de la lista: un texto con la caja pergamino de fondo.
+     Ahí se van a ver el título y, debajo, la categoría y la prioridad. -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:textSize="16sp"
+    android:textColor="@color/tinta"
+    android:background="@drawable/bg_campo" />
