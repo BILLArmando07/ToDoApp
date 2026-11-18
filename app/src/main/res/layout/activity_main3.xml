@@ -7,9 +7,6 @@
     android:padding="24dp"
     android:background="@color/cuero">
 
-    <!-- Fila de arriba: título a la izquierda y "Ajustes" a la derecha.
-         El título tiene layout_weight=1, o sea "ocupa todo el espacio que sobre",
-         y eso empuja "Ajustes" hasta la derecha. -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,25 +31,76 @@
             android:textColor="@color/dorado" />
     </LinearLayout>
 
-    <!-- Aquí se muestra cuántas tareas hay (lo cambia el Kotlin) -->
     <TextView
         android:id="@+id/tvContador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="0 tareas pendientes"
+        android:text="0 tareas"
         android:textColor="#C8B58A" />
 
-    <!-- La lista. divider transparente + dividerHeight = separación entre tarjetas.
-         height 0dp + weight 1 = ocupa todo lo que sobre, y el botón queda abajo. -->
-    <ListView
-        android:id="@+id/lvTareas"
+    <!-- Caja de búsqueda: la lista se filtra mientras escribes -->
+    <EditText
+        android:id="@+id/etBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        android:padding="14dp"
+        android:inputType="text"
+        android:hint="Buscar tarea..."
+        android:textColor="@color/tinta"
+        android:textColorHint="#6B5636"
+        android:background="@drawable/bg_campo" />
+
+    <!-- Dos menús lado a lado: filtrar por estado y ordenar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spFiltro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_campo"
+            android:popupBackground="@color/pergamino" />
+
+        <Spinner
+            android:id="@+id/spOrden"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_campo"
+            android:popupBackground="@color/pergamino" />
+    </LinearLayout>
+
+    <!-- FrameLayout apila la lista y el mensaje de "vacío". Solo se ve uno a la vez. -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp" />
+        android:layout_marginTop="16dp">
+
+        <ListView
+            android:id="@+id/lvTareas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
+
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No hay tareas que mostrar.\nToca + Nueva tarea para agregar una."
+            android:textColor="#C8B58A" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnNueva"

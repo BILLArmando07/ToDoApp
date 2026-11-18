@@ -19,6 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             optimization {
@@ -41,8 +42,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+
     // Room: la librería que guarda datos en una base de datos del celular
     implementation("androidx.room:room-runtime:2.8.5")
 // KSP genera el código interno de Room a partir de tus clases
     ksp("androidx.room:room-compiler:2.8.5")
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
+    implementation("androidx.datastore:datastore-preferences:1.3.0")
 }

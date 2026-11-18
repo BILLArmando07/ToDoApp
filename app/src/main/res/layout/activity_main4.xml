@@ -13,7 +13,9 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- Este título cambia por código: "Nueva tarea" o "Editar tarea" -->
         <TextView
+            android:id="@+id/tvTituloPantalla"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -58,7 +60,6 @@
         android:text="Prioridad"
         android:textColor="@color/pergamino" />
 
-    <!-- Spinner = menú desplegable. popupBackground es el fondo de la lista que se abre. -->
     <Spinner
         android:id="@+id/spPrioridad"
         android:layout_width="match_parent"
@@ -76,6 +77,21 @@
 
     <Spinner
         android:id="@+id/spCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_campo"
+        android:popupBackground="@color/pergamino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Estado"
+        android:textColor="@color/pergamino" />
+
+    <Spinner
+        android:id="@+id/spEstado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"

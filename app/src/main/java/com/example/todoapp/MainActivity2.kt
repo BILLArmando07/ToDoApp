@@ -9,8 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.todoapp.data.AppDatabase
-import com.example.todoapp.data.UserEntity
+import com.example.todoapp.logic.UserRepository
+import com.example.todoapp.logic.Validador
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,8 +18,8 @@ class MainActivity2 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main2)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left + 24, systemBars.top, systemBars.right + 24, systemBars.bottom)
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(bars.left + 24, bars.top, bars.right + 24, bars.bottom)
             insets
         }
 
@@ -30,36 +30,31 @@ class MainActivity2 : AppCompatActivity() {
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
         val tvIrLogin = findViewById<TextView>(R.id.tvIrLogin)
 
-        val db = AppDatabase.getInstance(this)
+        val usuarios = UserRepository(this)
 
         btnRegistrar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
-            val correo = etCorreo.text.toString().trim()
+            val nombre = etNombre.text.toString()
+            val correo = etCorreo.text.toString()
             val password = etPassword.text.toString()
             val confirmar = etConfirmar.text.toString()
 
-            // Validaciones: cada una avisa y sale si algo está mal
-            if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if (password != confirmar) {
-                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            // Si ya existe un usuario con ese correo, no lo registramos otra vez
-            if (db.userDao().buscarPorCorreo(correo) != null) {
-                Toast.makeText(this, "Ese correo ya está registrado", Toast.LENGTH_SHORT).show()
+            // 1) Validamos el formato de los datos
+            val errorFormato = Validador.validarRegistro(nombre, correo, password, confirmar)
+            if (errorFormato != null) {
+                Toast.makeText(this, errorFormato, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Todo bien: guardamos el usuario en la base de datos
-            db.userDao().insertUser(UserEntity(nombre = nombre, correo = correo, password = password))
-            Toast.makeText(this, "Cuenta creada, ya puedes iniciar sesión", Toast.LENGTH_SHORT).show()
-            finish() // cierra esta pantalla y regresa al login
+            // 2) Intentamos registrar (puede fallar si el correo ya existe)
+            val errorRegistro = usuarios.registrar(nombre, correo, password)
+            if (errorRegistro != null) {
+                Toast.makeText(this, errorRegistro, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Cuenta creada, ya puedes iniciar sesión", Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
 
-        // "Inicia sesión" solo cierra el registro y regresa al login
         tvIrLogin.setOnClickListener { finish() }
     }
 }

@@ -1,16 +1,29 @@
 package com.example.todoapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.todoapp.logic.SessionManager
+import com.example.todoapp.logic.UserRepository
+import com.example.todoapp.logic.irALogin
+import android.widget.Switch
 
 class MainActivity5 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sesion = SessionManager(this)
+        val usuario = UserRepository(this).obtener(sesion.usuarioActual())
+        if (usuario == null) { // sin sesión válida, volvemos al login
+            sesion.cerrar()
+            irALogin()
+            return
+        }
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main5)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -19,15 +32,19 @@ class MainActivity5 : AppCompatActivity() {
             insets
         }
 
-        val btnCerrar = findViewById<Button>(R.id.btnCerrar)
+        findViewById<TextView>(R.id.tvUsuario).text = "${usuario.nombre}\n${usuario.correo}"
+        // Al abrir la pantalla, el interruptor muestra lo que se guardó la última vez
+        val swNotif = findViewById<Switch>(R.id.swNotif)
+        swNotif.isChecked = sesion.notificacionesActivas()
 
-        btnCerrar.setOnClickListener {
-            // Abrimos el Login (MainActivity)...
-            val intent = Intent(this, MainActivity::class.java)
-            // ...y le pedimos a Android que borre las pantallas anteriores,
-            // para que el botón "atrás" no regrese a la lista después de cerrar sesión.
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+// Cada vez que lo mueves, se guarda la nueva preferencia
+        swNotif.setOnCheckedChangeListener { _, activo ->
+            sesion.guardarNotificaciones(activo)
+        }
+
+        findViewById<Button>(R.id.btnCerrar).setOnClickListener {
+            sesion.cerrar() // borra la sesión guardada
+            irALogin()
         }
     }
 }

@@ -10,51 +10,64 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.todoapp.data.AppDatabase
+import com.example.todoapp.logic.SessionManager
+import com.example.todoapp.logic.UserRepository
+import com.example.todoapp.logic.Validador
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sesion = SessionManager(this)
+        val usuarios = UserRepository(this)
+
+        // Si ya había una sesión guardada (y ese usuario existe), saltamos al listado
+        if (sesion.haySesion()) {
+            if (usuarios.obtener(sesion.usuarioActual()) != null) {
+                startActivity(Intent(this, MainActivity3::class.java))
+                finish()
+                return
+            } else {
+                sesion.cerrar() // la sesión era de un usuario que ya no existe
+            }
+        }
+
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main) // usa el XML de arriba
+        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left + 24, systemBars.top, systemBars.right + 24, systemBars.bottom)
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(bars.left + 24, bars.top, bars.right + 24, bars.bottom)
             insets
         }
 
-        // Conectamos los elementos del XML con variables
         val etCorreo = findViewById<EditText>(R.id.etCorreo)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvIrRegistro = findViewById<TextView>(R.id.tvIrRegistro)
 
-        // Abrimos la base de datos (la que hicimos en el paso 4)
-        val db = AppDatabase.getInstance(this)
-
         btnLogin.setOnClickListener {
             val correo = etCorreo.text.toString().trim()
             val password = etPassword.text.toString()
 
-            // Si falta algo, avisamos con un Toast (mensajito abajo) y salimos
-            if (correo.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            if (!Validador.correoValido(correo)) {
+                etCorreo.error = "Escribe un correo válido"
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                etPassword.error = "Escribe tu contraseña"
                 return@setOnClickListener
             }
 
-            // Buscamos en la base de datos un usuario con ese correo y contraseña
-            val usuario = db.userDao().login(correo, password)
-
+            val usuario = usuarios.login(correo, password)
             if (usuario == null) {
                 Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             } else {
-                // Intent = "ábreme otra pantalla". MainActivity3 será la lista de tareas.
+                sesion.iniciar(usuario.id) // guardamos quién entró
                 startActivity(Intent(this, MainActivity3::class.java))
-                finish() // cierra el login para que "atrás" no regrese aquí
+                finish()
             }
         }
 
-        // Al tocar "Regístrate" abrimos la pantalla de registro (MainActivity2)
         tvIrRegistro.setOnClickListener {
             startActivity(Intent(this, MainActivity2::class.java))
         }
