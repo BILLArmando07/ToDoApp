@@ -25,12 +25,18 @@
         android:text="Notificaciones"
         android:textColor="@color/tinta"
         android:background="@drawable/bg_campo" />
+    <Button
+        android:id="@+id/btnCambiarTema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modo Oscuro" />
 
     <!-- Este espacio vacío empuja el botón hasta abajo (weight=1 = ocupa lo que sobre) -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
 
     <Button
         android:id="@+id/btnCerrar"
