@@ -20,6 +20,7 @@ class SessionManager(context: Context) {
     companion object {
         private val KEY_USER_ID = intPreferencesKey("userId")
         private val KEY_NOTIF = booleanPreferencesKey("notificaciones")
+        private val KEY_OSCURO = booleanPreferencesKey("modo_oscuro")
     }
 
     // ---- Sesión ----
@@ -44,5 +45,12 @@ class SessionManager(context: Context) {
 
     fun guardarNotificaciones(activas: Boolean) {
         runBlocking { store.edit { it[KEY_NOTIF] = activas } }
+    }
+
+    // Modo oscuro: es el predeterminado (true) porque la app es café oscuro
+    fun modoOscuro(): Boolean = runBlocking { store.data.first()[KEY_OSCURO] ?: true }
+
+    fun guardarModoOscuro(oscuro: Boolean) {
+        runBlocking { store.edit { it[KEY_OSCURO] = oscuro } }
     }
 }

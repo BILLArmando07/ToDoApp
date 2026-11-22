@@ -20,7 +20,7 @@
             android:text="@string/lista_titulo"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/pergamino" />
+            android:textColor="@color/texto_fondo" />
 
         <TextView
             android:id="@+id/tvAjustes"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/ajustes"
-            android:textColor="@color/dorado" />
+            android:textColor="@color/acento" />
     </LinearLayout>
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="#C8B58A" />
+        android:textColor="@color/texto_suave" />
 
     <EditText
         android:id="@+id/etBuscar"
@@ -95,7 +95,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/lista_vacia"
-            android:textColor="#C8B58A" />
+            android:textColor="@color/texto_suave" />
     </FrameLayout>
 
     <Button

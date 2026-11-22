@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MODO OSCURO (el predeterminado): café oscuro como la pasta del diario -->
+    <color name="cuero">#3A2415</color>
+    <color name="texto_fondo">#F2E6C8</color>
+    <color name="texto_suave">#C8B58A</color>
+    <color name="acento">#C9A227</color>
+</resources>

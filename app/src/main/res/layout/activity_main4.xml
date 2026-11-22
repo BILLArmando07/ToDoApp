@@ -21,7 +21,7 @@
             android:text="@string/nueva_tarea_titulo"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/pergamino" />
+            android:textColor="@color/texto_fondo" />
 
         <TextView
             android:id="@+id/tvCancelar"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/cancelar"
-            android:textColor="@color/dorado" />
+            android:textColor="@color/acento" />
     </LinearLayout>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/titulo_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <EditText
         android:id="@+id/etTitulo"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/prioridad_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <Spinner
         android:id="@+id/spPrioridad"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/categoria_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <Spinner
         android:id="@+id/spCategoria"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/estado_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <Spinner
         android:id="@+id/spEstado"

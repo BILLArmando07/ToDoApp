@@ -14,21 +14,21 @@
         android:text="@string/registro_titulo"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registro_subtitulo"
         android:textSize="15sp"
-        android:textColor="#C8B58A" />
+        android:textColor="@color/texto_suave" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/nombre_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <EditText
         android:id="@+id/etNombre"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/correo_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <EditText
         android:id="@+id/etCorreo"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/password_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/confirmar_label"
-        android:textColor="@color/pergamino" />
+        android:textColor="@color/texto_fondo" />
 
     <EditText
         android:id="@+id/etConfirmar"
@@ -120,5 +120,5 @@
         android:gravity="center"
         android:padding="8dp"
         android:text="@string/registro_con_cuenta"
-        android:textColor="@color/dorado" />
+        android:textColor="@color/acento" />
 </LinearLayout>

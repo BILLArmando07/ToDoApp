@@ -2,9 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cuero">#3A2415</color>
+
+    <!-- Colores que NO cambian con el modo -->
     <color name="pergamino">#F2E6C8</color>
     <color name="tinta">#2B1A0E</color>
     <color name="dorado">#C9A227</color>
     <color name="borde">#8B6B43</color>
+
+    <!-- MODO CLARO (café claro): estos 4 cambian en values-night/colors.xml -->
+    <color name="cuero">#D9B98C</color>
+    <color name="texto_fondo">#2B1A0E</color>
+    <color name="texto_suave">#5A4026</color>
+    <color name="acento">#6B3F0B</color>
 </resources>

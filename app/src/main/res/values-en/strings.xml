@@ -85,4 +85,15 @@
     <string name="err_login">Incorrect email or password</string>
     <string name="err_titulo_corto">The title must be at least 3 characters long</string>
     <string name="err_titulo_largo">The title is too long (60 max)</string>
+
+    <!-- Modo oscuro / claro -->
+    <string name="modo_oscuro">Switch to dark mode</string>
+    <string name="modo_claro">Switch to light mode</string>
+
+    <!-- Notificaciones -->
+    <string name="notif_canal_nombre">Task reminders</string>
+    <string name="notif_canal_desc">Alerts about your pending tasks</string>
+    <string name="notif_titulo">Notifications on</string>
+    <string name="notif_texto">We\'ll let you know when you have pending tasks.</string>
+    <string name="notif_permiso_negado">Turn on the notification permission in settings</string>
 </resources>
