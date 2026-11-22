@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
@@ -11,12 +10,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Configuraciones"
+        android:text="@string/config_titulo"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/pergamino" />
 
-    <!-- Nombre y correo de quien inició sesión (se llenan por código) -->
     <TextView
         android:id="@+id/tvUsuario"
         android:layout_width="match_parent"
@@ -32,9 +30,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:padding="16dp"
-        android:text="Notificaciones"
+        android:text="@string/notificaciones"
         android:textColor="@color/tinta"
         android:background="@drawable/bg_campo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/idioma_label"
+        android:textColor="@color/pergamino" />
+
+    <Spinner
+        android:id="@+id/spIdioma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_campo"
+        android:popupBackground="@color/pergamino" />
 
     <View
         android:layout_width="match_parent"
@@ -45,7 +58,7 @@
         android:id="@+id/btnCerrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
+        android:text="@string/btn_cerrar"
         android:textColor="@color/tinta"
         android:backgroundTint="@color/dorado" />
 </LinearLayout>

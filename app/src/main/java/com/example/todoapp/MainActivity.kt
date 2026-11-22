@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.todoapp.logic.SessionManager
 import com.example.todoapp.logic.UserRepository
 import com.example.todoapp.logic.Validador
+import com.example.todoapp.logic.activarOjito
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 return
             } else {
-                sesion.cerrar() // la sesión era de un usuario que ya no existe
+                sesion.cerrar()
             }
         }
 
@@ -45,24 +46,27 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvIrRegistro = findViewById<TextView>(R.id.tvIrRegistro)
 
+        // El ojito para ver/ocultar la contraseña
+        etPassword.activarOjito()
+
         btnLogin.setOnClickListener {
             val correo = etCorreo.text.toString().trim()
             val password = etPassword.text.toString()
 
             if (!Validador.correoValido(correo)) {
-                etCorreo.error = "Escribe un correo válido"
+                etCorreo.error = getString(R.string.err_correo_login)
                 return@setOnClickListener
             }
             if (password.isEmpty()) {
-                etPassword.error = "Escribe tu contraseña"
+                etPassword.error = getString(R.string.err_password_vacia)
                 return@setOnClickListener
             }
 
             val usuario = usuarios.login(correo, password)
             if (usuario == null) {
-                Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.err_login), Toast.LENGTH_SHORT).show()
             } else {
-                sesion.iniciar(usuario.id) // guardamos quién entró
+                sesion.iniciar(usuario.id)
                 startActivity(Intent(this, MainActivity3::class.java))
                 finish()
             }

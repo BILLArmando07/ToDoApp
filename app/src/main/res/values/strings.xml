@@ -1,3 +1,89 @@
 <resources>
-    <string name="app_name">ToDoApp</string>
+    <string name="app_name" translatable="false">ToDoApp</string>
+    <!-- Login -->
+    <string name="login_subtitulo">Organiza tus pendientes del día</string>
+    <string name="correo_label">Correo electrónico</string>
+    <string name="correo_hint">correo@ejemplo.com</string>
+    <string name="password_label">Contraseña</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="login_sin_cuenta">¿No tienes cuenta? Regístrate</string>
+
+    <!-- Registro -->
+    <string name="registro_titulo">Crear cuenta</string>
+    <string name="registro_subtitulo">Llena tus datos para empezar</string>
+    <string name="nombre_label">Nombre</string>
+    <string name="nombre_hint">Tu nombre</string>
+    <string name="password_hint_registro">Mínimo 6 caracteres</string>
+    <string name="confirmar_label">Confirmar contraseña</string>
+    <string name="confirmar_hint">Repite la contraseña</string>
+    <string name="btn_registrar">Registrarme</string>
+    <string name="registro_con_cuenta">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <!-- Lista -->
+    <string name="lista_titulo">Mis tareas</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="buscar_hint">Buscar tarea...</string>
+    <string name="lista_vacia">No hay tareas que mostrar.\nToca + Nueva tarea para agregar una.</string>
+    <string name="btn_nueva">+ Nueva tarea</string>
+    <plurals name="contador_tareas">
+        <item quantity="one">%d tarea</item>
+        <item quantity="other">%d tareas</item>
+    </plurals>
+    <string name="filtro_todos">Todos</string>
+    <string name="orden_recientes">Más recientes</string>
+    <string name="orden_prioridad">Prioridad</string>
+    <string name="orden_titulo">Título A-Z</string>
+    <string name="op_cambiar_estado">Cambiar estado</string>
+    <string name="op_editar">Editar</string>
+    <string name="op_eliminar">Eliminar</string>
+    <string name="eliminar_titulo">Eliminar tarea</string>
+    <string name="eliminar_mensaje">¿Seguro que quieres eliminar «%1$s»?</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="toast_estado">Estado: %1$s</string>
+
+    <!-- Crear / editar -->
+    <string name="nueva_tarea_titulo">Nueva tarea</string>
+    <string name="editar_tarea_titulo">Editar tarea</string>
+    <string name="titulo_label">Título</string>
+    <string name="titulo_hint">¿Qué tienes que hacer?</string>
+    <string name="prioridad_label">Prioridad</string>
+    <string name="categoria_label">Categoría</string>
+    <string name="estado_label">Estado</string>
+    <string name="btn_guardar_tarea">Guardar tarea</string>
+    <string name="btn_guardar_cambios">Guardar cambios</string>
+
+    <!-- Valores de las tareas (se muestran traducidos) -->
+    <string name="prio_alta">Alta</string>
+    <string name="prio_media">Media</string>
+    <string name="prio_baja">Baja</string>
+    <string name="cat_escuela">Escuela</string>
+    <string name="cat_casa">Casa</string>
+    <string name="cat_personal">Personal</string>
+    <string name="estado_pendiente">Pendiente</string>
+    <string name="estado_en_progreso">En progreso</string>
+    <string name="estado_completada">Completada</string>
+
+    <!-- Configuraciones -->
+    <string name="config_titulo">Configuraciones</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="idioma_label">Idioma</string>
+    <string name="idioma_es">Español</string>
+    <string name="idioma_en">English</string>
+    <string name="btn_cerrar">Cerrar sesión</string>
+
+    <!-- Mensajes -->
+    <string name="msg_tarea_guardada">Tarea guardada</string>
+    <string name="msg_cambios_guardados">Cambios guardados</string>
+    <string name="msg_tarea_no_encontrada">No se encontró la tarea</string>
+    <string name="msg_cuenta_creada">Cuenta creada, ya puedes iniciar sesión</string>
+    <string name="err_nombre">Escribe tu nombre</string>
+    <string name="err_correo_invalido">El correo no es válido</string>
+    <string name="err_correo_login">Escribe un correo válido</string>
+    <string name="err_password_vacia">Escribe tu contraseña</string>
+    <string name="err_password_corta">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="err_password_no_coincide">Las contraseñas no coinciden</string>
+    <string name="err_correo_repetido">Ese correo ya está registrado</string>
+    <string name="err_login">Correo o contraseña incorrectos</string>
+    <string name="err_titulo_corto">El título debe tener al menos 3 caracteres</string>
+    <string name="err_titulo_largo">El título es muy largo (máximo 60)</string>
 </resources>

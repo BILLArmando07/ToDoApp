@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import com.example.todoapp.data.TareaEntity
+import com.example.todoapp.logic.Etiquetas
 import com.example.todoapp.logic.SessionManager
 import com.example.todoapp.logic.TareaRepository
 import com.example.todoapp.logic.irALogin
@@ -31,13 +32,12 @@ class MainActivity3 : AppCompatActivity() {
     private lateinit var spOrden: Spinner
     private lateinit var tvContador: TextView
     private var usuarioId = -1
-    private var tareas: List<TareaEntity> = emptyList() // las tareas que se ven ahorita
-    private val textos = mutableListOf<String>()        // el texto de cada tarjeta
+    private var tareas: List<TareaEntity> = emptyList()
+    private val textos = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Seguridad: si no hay sesión, regresamos al login
         usuarioId = SessionManager(this).usuarioActual()
         if (usuarioId == -1) {
             irALogin()
@@ -61,21 +61,19 @@ class MainActivity3 : AppCompatActivity() {
         val btnNueva = findViewById<Button>(R.id.btnNueva)
         val tvAjustes = findViewById<TextView>(R.id.tvAjustes)
 
-        // Opciones de los menús de filtro y orden
+        // Los menús MUESTRAN el texto traducido, pero para saber qué valor real eligió
+        // el usuario usamos la POSICIÓN (selectedItemPosition) en las listas de Etiquetas.
         spFiltro.adapter = ArrayAdapter(
-            this, R.layout.spinner_item,
-            listOf("Todos", "Pendiente", "En progreso", "Completada")
+            this, R.layout.spinner_item, Etiquetas.FILTROS.map { Etiquetas.filtro(this, it) }
         )
         spOrden.adapter = ArrayAdapter(
-            this, R.layout.spinner_item,
-            listOf("Más recientes", "Prioridad", "Título A-Z")
+            this, R.layout.spinner_item, Etiquetas.ORDENES.map { Etiquetas.orden(this, it) }
         )
 
         adapter = ArrayAdapter(this, R.layout.item_tarea, textos)
         lvTareas.adapter = adapter
-        lvTareas.emptyView = findViewById(R.id.tvVacio) // si la lista está vacía, muestra este mensaje
+        lvTareas.emptyView = findViewById(R.id.tvVacio)
 
-        // Recargar la lista cuando cambia la búsqueda, el filtro o el orden
         etBuscar.doAfterTextChanged { cargarTareas() }
         val recargar = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -86,7 +84,6 @@ class MainActivity3 : AppCompatActivity() {
         spFiltro.onItemSelectedListener = recargar
         spOrden.onItemSelectedListener = recargar
 
-        // Tocar una tarea abre un menú con las acciones posibles
         lvTareas.setOnItemClickListener { _, _, position, _ ->
             mostrarOpciones(tareas[position])
         }
@@ -95,7 +92,6 @@ class MainActivity3 : AppCompatActivity() {
         tvAjustes.setOnClickListener { startActivity(Intent(this, MainActivity5::class.java)) }
     }
 
-    // Se ejecuta cada vez que la pantalla vuelve a verse (por ejemplo, después de guardar una tarea)
     override fun onResume() {
         super.onResume()
         if (usuarioId != -1) cargarTareas()
@@ -105,30 +101,43 @@ class MainActivity3 : AppCompatActivity() {
         tareas = tareasRepo.listar(
             usuarioId,
             etBuscar.text.toString(),
-            spFiltro.selectedItem.toString(),
-            spOrden.selectedItem.toString()
+            Etiquetas.FILTROS[spFiltro.selectedItemPosition], // valor real (en español) del filtro
+            Etiquetas.ORDENES[spOrden.selectedItemPosition]   // valor real del orden
         )
         textos.clear()
         for (t in tareas) {
-            textos.add("${t.titulo}\n${t.categoria} · ${t.prioridad} · ${t.estado}")
+            // Lo guardado está en español; aquí se traduce solo para mostrarlo
+            val cat = Etiquetas.categoria(this, t.categoria)
+            val prio = Etiquetas.prioridad(this, t.prioridad)
+            val est = Etiquetas.estado(this, t.estado)
+            textos.add("${t.titulo}\n$cat · $prio · $est")
         }
         adapter.notifyDataSetChanged()
-        tvContador.text = "${tareas.size} tareas"
+        // getQuantityString elige "1 tarea" o "2 tareas" (singular/plural) según el idioma
+        tvContador.text = resources.getQuantityString(R.plurals.contador_tareas, tareas.size, tareas.size)
     }
 
     private fun mostrarOpciones(tarea: TareaEntity) {
-        val opciones = arrayOf("Cambiar estado", "Editar", "Eliminar")
+        val opciones = arrayOf(
+            getString(R.string.op_cambiar_estado),
+            getString(R.string.op_editar),
+            getString(R.string.op_eliminar)
+        )
         AlertDialog.Builder(this)
             .setTitle(tarea.titulo)
             .setItems(opciones) { _, cual ->
                 when (cual) {
-                    0 -> { // avanza al siguiente estado
+                    0 -> {
                         val nuevo = tareasRepo.siguienteEstado(tarea.estado)
                         tareasRepo.actualizar(tarea.copy(estado = nuevo))
                         cargarTareas()
-                        Toast.makeText(this, "Estado: $nuevo", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.toast_estado, Etiquetas.estado(this, nuevo)),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    1 -> { // abre la pantalla de crear, pero en modo edición
+                    1 -> {
                         val intent = Intent(this, MainActivity4::class.java)
                         intent.putExtra("tareaId", tarea.id)
                         startActivity(intent)
@@ -141,13 +150,14 @@ class MainActivity3 : AppCompatActivity() {
 
     private fun confirmarEliminar(tarea: TareaEntity) {
         AlertDialog.Builder(this)
-            .setTitle("Eliminar tarea")
-            .setMessage("¿Seguro que quieres eliminar \"${tarea.titulo}\"?")
-            .setPositiveButton("Eliminar") { _, _ ->
+            .setTitle(getString(R.string.eliminar_titulo))
+            // %1$s en strings.xml se reemplaza por el título de la tarea
+            .setMessage(getString(R.string.eliminar_mensaje, tarea.titulo))
+            .setPositiveButton(getString(R.string.op_eliminar)) { _, _ ->
                 tareasRepo.eliminar(tarea.id, usuarioId)
                 cargarTareas()
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.cancelar), null)
             .show()
     }
 }

@@ -13,13 +13,12 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- Este título cambia por código: "Nueva tarea" o "Editar tarea" -->
         <TextView
             android:id="@+id/tvTituloPantalla"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nueva tarea"
+            android:text="@string/nueva_tarea_titulo"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/pergamino" />
@@ -29,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Cancelar"
+            android:text="@string/cancelar"
             android:textColor="@color/dorado" />
     </LinearLayout>
 
@@ -37,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Título"
+        android:text="@string/titulo_label"
         android:textColor="@color/pergamino" />
 
     <EditText
@@ -48,7 +47,7 @@
         android:minHeight="48dp"
         android:padding="14dp"
         android:inputType="text"
-        android:hint="¿Qué tienes que hacer?"
+        android:hint="@string/titulo_hint"
         android:textColor="@color/tinta"
         android:textColorHint="#6B5636"
         android:background="@drawable/bg_campo" />
@@ -57,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Prioridad"
+        android:text="@string/prioridad_label"
         android:textColor="@color/pergamino" />
 
     <Spinner
@@ -72,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Categoría"
+        android:text="@string/categoria_label"
         android:textColor="@color/pergamino" />
 
     <Spinner
@@ -87,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Estado"
+        android:text="@string/estado_label"
         android:textColor="@color/pergamino" />
 
     <Spinner
@@ -103,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Guardar tarea"
+        android:text="@string/btn_guardar_tarea"
         android:textColor="@color/tinta"
         android:backgroundTint="@color/dorado" />
 </LinearLayout>

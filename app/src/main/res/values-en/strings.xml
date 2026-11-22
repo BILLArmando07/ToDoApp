@@ -1,0 +1,88 @@
+<resources>
+    <!-- Login -->
+    <string name="login_subtitulo">Organize your daily to-dos</string>
+    <string name="correo_label">Email</string>
+    <string name="correo_hint">email@example.com</string>
+    <string name="password_label">Password</string>
+    <string name="btn_login">Log in</string>
+    <string name="login_sin_cuenta">Don\'t have an account? Sign up</string>
+
+    <!-- Registro -->
+    <string name="registro_titulo">Create account</string>
+    <string name="registro_subtitulo">Fill in your details to get started</string>
+    <string name="nombre_label">Name</string>
+    <string name="nombre_hint">Your name</string>
+    <string name="password_hint_registro">At least 6 characters</string>
+    <string name="confirmar_label">Confirm password</string>
+    <string name="confirmar_hint">Repeat the password</string>
+    <string name="btn_registrar">Sign up</string>
+    <string name="registro_con_cuenta">Already have an account? Log in</string>
+
+    <!-- Lista -->
+    <string name="lista_titulo">My tasks</string>
+    <string name="ajustes">Settings</string>
+    <string name="buscar_hint">Search tasks...</string>
+    <string name="lista_vacia">No tasks to show.\nTap + New task to add one.</string>
+    <string name="btn_nueva">+ New task</string>
+    <plurals name="contador_tareas">
+        <item quantity="one">%d task</item>
+        <item quantity="other">%d tasks</item>
+    </plurals>
+    <string name="filtro_todos">All</string>
+    <string name="orden_recientes">Newest</string>
+    <string name="orden_prioridad">Priority</string>
+    <string name="orden_titulo">Title A-Z</string>
+    <string name="op_cambiar_estado">Change status</string>
+    <string name="op_editar">Edit</string>
+    <string name="op_eliminar">Delete</string>
+    <string name="eliminar_titulo">Delete task</string>
+    <string name="eliminar_mensaje">Are you sure you want to delete “%1$s”?</string>
+    <string name="cancelar">Cancel</string>
+    <string name="toast_estado">Status: %1$s</string>
+
+    <!-- Crear / editar -->
+    <string name="nueva_tarea_titulo">New task</string>
+    <string name="editar_tarea_titulo">Edit task</string>
+    <string name="titulo_label">Title</string>
+    <string name="titulo_hint">What do you need to do?</string>
+    <string name="prioridad_label">Priority</string>
+    <string name="categoria_label">Category</string>
+    <string name="estado_label">Status</string>
+    <string name="btn_guardar_tarea">Save task</string>
+    <string name="btn_guardar_cambios">Save changes</string>
+
+    <!-- Valores de las tareas -->
+    <string name="prio_alta">High</string>
+    <string name="prio_media">Medium</string>
+    <string name="prio_baja">Low</string>
+    <string name="cat_escuela">School</string>
+    <string name="cat_casa">Home</string>
+    <string name="cat_personal">Personal</string>
+    <string name="estado_pendiente">Pending</string>
+    <string name="estado_en_progreso">In progress</string>
+    <string name="estado_completada">Completed</string>
+
+    <!-- Configuraciones -->
+    <string name="config_titulo">Settings</string>
+    <string name="notificaciones">Notifications</string>
+    <string name="idioma_label">Language</string>
+    <string name="idioma_es">Español</string>
+    <string name="idioma_en">English</string>
+    <string name="btn_cerrar">Log out</string>
+
+    <!-- Mensajes -->
+    <string name="msg_tarea_guardada">Task saved</string>
+    <string name="msg_cambios_guardados">Changes saved</string>
+    <string name="msg_tarea_no_encontrada">Task not found</string>
+    <string name="msg_cuenta_creada">Account created, you can log in now</string>
+    <string name="err_nombre">Enter your name</string>
+    <string name="err_correo_invalido">The email is not valid</string>
+    <string name="err_correo_login">Enter a valid email</string>
+    <string name="err_password_vacia">Enter your password</string>
+    <string name="err_password_corta">The password must be at least 6 characters long</string>
+    <string name="err_password_no_coincide">Passwords do not match</string>
+    <string name="err_correo_repetido">That email is already registered</string>
+    <string name="err_login">Incorrect email or password</string>
+    <string name="err_titulo_corto">The title must be at least 3 characters long</string>
+    <string name="err_titulo_largo">The title is too long (60 max)</string>
+</resources>

@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.todoapp.logic.UserRepository
 import com.example.todoapp.logic.Validador
+import com.example.todoapp.logic.activarOjito
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,10 @@ class MainActivity2 : AppCompatActivity() {
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
         val tvIrLogin = findViewById<TextView>(R.id.tvIrLogin)
 
+        // Un ojito en cada campo de contraseña
+        etPassword.activarOjito()
+        etConfirmar.activarOjito()
+
         val usuarios = UserRepository(this)
 
         btnRegistrar.setOnClickListener {
@@ -38,19 +43,17 @@ class MainActivity2 : AppCompatActivity() {
             val password = etPassword.text.toString()
             val confirmar = etConfirmar.text.toString()
 
-            // 1) Validamos el formato de los datos
-            val errorFormato = Validador.validarRegistro(nombre, correo, password, confirmar)
+            val errorFormato = Validador.validarRegistro(this, nombre, correo, password, confirmar)
             if (errorFormato != null) {
                 Toast.makeText(this, errorFormato, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 2) Intentamos registrar (puede fallar si el correo ya existe)
             val errorRegistro = usuarios.registrar(nombre, correo, password)
             if (errorRegistro != null) {
                 Toast.makeText(this, errorRegistro, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Cuenta creada, ya puedes iniciar sesión", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_cuenta_creada), Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
