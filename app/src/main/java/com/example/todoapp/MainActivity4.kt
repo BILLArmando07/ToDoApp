@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.todoapp.logic.Etiquetas
+import com.example.todoapp.logic.NotificacionesHelper
 import com.example.todoapp.logic.SessionManager
 import com.example.todoapp.logic.TareaRepository
 import com.example.todoapp.logic.Validador
@@ -90,6 +91,11 @@ class MainActivity4 : AppCompatActivity() {
             if (tareaEditar == null) {
                 repo.crear(usuarioId, titulo, prioridad, categoria, estado)
                 Toast.makeText(this, getString(R.string.msg_tarea_guardada), Toast.LENGTH_SHORT).show()
+                NotificacionesHelper.mostrarNotificacion(
+                    this,
+                    titulo.trim(),
+                    "${Etiquetas.categoria(this, categoria)} · ${Etiquetas.prioridad(this, prioridad)}"
+                )
             } else {
                 repo.actualizar(
                     tareaEditar.copy(
